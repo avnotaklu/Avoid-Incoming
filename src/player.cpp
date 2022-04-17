@@ -1,7 +1,7 @@
 #include"player.hpp"
 #include"util.hpp"
-void restart_game_on_collision(player *player);
-void player::movement(){
+void restart_game_on_collision(Player &player);
+void Player::movement(){
     if((this->mRect.y+this->mRect.h +10) < SCREEN_HEIGHT){
         if(app.down){
             this->mRect.y += speed;
@@ -9,6 +9,7 @@ void player::movement(){
     }
     if((this->mRect.y + 100) > (SCREEN_HEIGHT/2 )){
         if(app.up){
+
             this->mRect.y -= speed;
         }
     }
@@ -28,7 +29,7 @@ void player::movement(){
         this->mRect.x -=steerStrength;
     }
 }
-void player::collision(const std::vector<Entity> &vehicles){
+void Player::collision(const std::vector<Entity> &vehicles){
     for (const auto& vehiclePointer : vehicles){
         int x1 = this->mCollisionBox.x;
         int y1 = this->mCollisionBox.y;
@@ -39,11 +40,11 @@ void player::collision(const std::vector<Entity> &vehicles){
         int w2 = vehiclePointer.mCollisionBox.w;
         int h2 = vehiclePointer.mCollisionBox.h;
         if (collosion(x1,y1,w1,h1,x2,y2,w2,h2)){
-            restart_game_on_collision(this);
+            restart_game_on_collision(*this);
         }
     }
 }
-void player::handle(const std::vector<Entity> &vehicles){
-    player::movement();
-    player::collision(vehicles);
+void Player::handle(const std::vector<Entity> &vehicles){
+    Player::movement();
+    Player::collision(vehicles);
 }

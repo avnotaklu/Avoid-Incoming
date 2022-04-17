@@ -28,9 +28,9 @@ Uint64 LAST = 0;
 double deltaTime = 0;
 
 int main(){
-    player *Player = new player();
+    Player *player = new Player();
     init();
-    media(*Player,background);
+    media(*player,background);
     //draw_all_cars();
     while(game_running){
         LAST = NOW;
@@ -39,11 +39,11 @@ int main(){
 	Uint32 start = SDL_GetTicks();
         // Get the next event
         handle_inputs();
-        Player->handle(vehicles);
+        player->handle(vehicles);
         setScore();
         traffic_manager();
         //std::cout<<player.mRect.x<<" "<<player.mRect.y<<std::endl;
-        draw(*Player,background);
+        draw(*player,background);
         background.mRect.y -= cameraMovementSpeed;
         if ((background.mRect.y) > 900)
             background.mRect = backgroundStartingRect;
@@ -53,7 +53,7 @@ int main(){
         if(elapsedMS < GAME_SPEED)
             SDL_Delay(floor((GAME_SPEED) - elapsedMS));
     }
-    close(*Player,background);
+    close(*player,background);
     return 0;
 }
 void setScore(){
@@ -75,13 +75,12 @@ void handle_inputs(){
     cameraFinalPos = camera.y;
     cameraMovementSpeed  = cameraFinalPos - cameraInitialPos;
 }
-void restart_game_on_collision(player *Player){
+void restart_game_on_collision(Player& player){
     vehicles.clear();
     SCORE = 0;
     background.mRect = backgroundStartingRect;
     camera.y = 0;
-
-    Entity tmp = *Player;
+    player = std::move(*(new Player()));
 
     SDL_RenderCopy(renderer,gRestartTexture,NULL,NULL);
     SDL_RenderPresent(renderer);

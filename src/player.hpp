@@ -4,21 +4,35 @@
 #include "entity.hpp"
 #include "input.h"
 #include "vector"
-class player : public Entity
+class Player : public Entity
 {
 public:
     void handle(const std::vector<Entity> &vehicles);
-    player()
+    Player()
     {
         speed = 15;
         mRect = {450,450,256,256};
     }
-    virtual ~player() override{ };
+
+    Player& operator=(Player && other) noexcept
+    {
+        speed = other.speed;
+        mRect = other.mRect;
+        return *this;
+    }
+
+
+    Player(Player && other) noexcept
+    {
+        speed = other.speed;
+        mRect = other.mRect;
+    }
+
+    virtual ~Player() override{ };
     float speed;
 private:
     const float steerStrength =  16;
     void movement();
     void collision(const std::vector<Entity> &vehicles);
 };
-void restart_game_on_collision(player *player);
 #endif //PLAYER_H
