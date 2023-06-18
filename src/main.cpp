@@ -21,7 +21,7 @@ int SCORE = 0.0f;
 int lastScore;
 float secs = 0.0f;
 float elapsedMS = 0;
-SDL_Rect camera = {0,0,1000,600};
+SDL_Rect camera = {0,0,400,720};
 void setScore();
 Uint64 NOW = SDL_GetPerformanceCounter();
 Uint64 LAST = 0;
@@ -32,11 +32,20 @@ int main(){
     init();
     media(*player,background);
     //draw_all_cars();
+    int performance_counter_counter = 0;
     while(game_running){
+	Uint32 start = SDL_GetTicks();
+        performance_counter_counter++;
         LAST = NOW;
         NOW = SDL_GetPerformanceCounter();
-        deltaTime = ((NOW - LAST)*1000 / (double)SDL_GetPerformanceFrequency() );
-	Uint32 start = SDL_GetTicks();
+        auto perf = (double)SDL_GetPerformanceFrequency() ;
+        deltaTime = ((NOW - LAST)*1000 / perf);
+        if(performance_counter_counter < 20) {
+            std::cout<<"last: " << LAST << std::endl;
+            std::cout<<"now:  " << NOW << std::endl;
+            std::cout<<"perf: " << perf << std::endl;
+            std::cout<<"dt:   " << deltaTime << std::endl;
+        }
         // Get the next event
         handle_inputs();
         player->handle(vehicles);
@@ -45,7 +54,7 @@ int main(){
         //std::cout<<player.mRect.x<<" "<<player.mRect.y<<std::endl;
         draw(*player,background);
         background.mRect.y -= cameraMovementSpeed;
-        if ((background.mRect.y) > 900)
+        if ((background.mRect.y) > backgroundStartingRect.h)
             background.mRect = backgroundStartingRect;
         //SDL_UpdateWindowSurface(window);
         Uint32 end = SDL_GetTicks();

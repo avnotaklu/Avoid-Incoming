@@ -25,7 +25,7 @@ void renderText(SDL_Renderer *renderer){
     ss>>scoreText;
     SDL_Surface *HUDTextSurface = TTF_RenderText_Solid(HUDfont,scoreText.c_str(),color);
     SDL_Texture *HUDTextTexture = SDL_CreateTextureFromSurface(renderer,HUDTextSurface);
-    SDL_Rect dstRect = { 20,20,100,100};
+    SDL_Rect dstRect = { 20,20,64,64};
     SDL_RenderCopy(renderer,HUDTextTexture,NULL,&dstRect);
     SDL_DestroyTexture(HUDTextTexture);
     SDL_FreeSurface(HUDTextSurface);

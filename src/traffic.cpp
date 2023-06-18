@@ -3,6 +3,8 @@
 #include "draw_window.hpp"
 #include "entity.hpp"
 #include <vector>
+#include <algorithm>
+#include <array>
 #include <cstdlib>
 #include "util.hpp"
 #include "traffic.hpp"
@@ -17,12 +19,19 @@ SDL_Rect rect_new_car(){
     std::mt19937 rng(rd());
     std::uniform_int_distribution<std::mt19937::result_type> dist(0,4);
     SDL_Rect Rect;
-    int hMargin[4] = {-10,240,490,740};
+    int start = -15;
+    int gap = 100;
+    std::array<int, 4> hMargin;
+
+    // TODO: this generates weird values for index 0 which cause first lane cars to spawn near edge of lane
+    std::generate(hMargin.begin(), hMargin.end(), [n=0, start, gap]() mutable {
+            return start + ((n++) * gap);
+            });
     srand(time(0));
     Rect.x = hMargin[dist(rng)];
     Rect.y = -256;
-    Rect.w = 256;
-    Rect.h  = 256;
+    Rect.w = 128;
+    Rect.h  = 128;
     return Rect;
 }
 
@@ -48,21 +57,20 @@ void spawn_traffic(){
     }
 }
 void draw_all_cars(){
-    int i = 0;
     for (vehiclePointer = vehicles.begin();vehiclePointer<vehicles.end();vehiclePointer++){
         vehiclePointer->blit();
-        i++;
     }
 }
 void load_all_traffic(){
-    SDL_Rect rect = {80,20,110,220};
+    /* SDL_Rect rect = {80,20,110,220}; */
+    SDL_Rect rect = {40,10,48,110};
     SDL_Rect generatedRect = rect_new_car();
-    carTemplates[0].load("../../graphics/Mini_truck.png",generatedRect,rect);
-    carTemplates[1].load("../../graphics/taxi.png",generatedRect,rect);
+    carTemplates[0].load("../../graphics/Mini_truck128x128.png",generatedRect,rect);
+    carTemplates[1].load("../../graphics/taxi128x128.png",generatedRect,rect);
 } 
 void npc_movement(){
     for (vehiclePointer = vehicles.begin();vehiclePointer<vehicles.end();vehiclePointer++){
-        vehiclePointer->mRect.y += (8 - cameraMovementSpeed);
+        vehiclePointer->mRect.y += (4 - cameraMovementSpeed);
     }
 }
 void traffic_manager(){

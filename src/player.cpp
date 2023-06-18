@@ -1,13 +1,20 @@
 #include"player.hpp"
 #include"util.hpp"
 void restart_game_on_collision(Player &player);
+
+
+SDL_Rect playerStartingRect = {100,600,128, 128};
+std::string playerSprite = "../../graphics/Car128x128.png";
+
+
 void Player::movement(){
-    if((this->mRect.y+this->mRect.h +10) < SCREEN_HEIGHT){
+
+    if((this->mRect.y+this->mRect.h + 10) < SCREEN_HEIGHT){
         if(app.down){
             this->mRect.y += speed;
         }
     }
-    if((this->mRect.y + 100) > (SCREEN_HEIGHT/2 )){
+    if((this->mRect.y + 100) > (SCREEN_HEIGHT / 2)){
         if(app.up){
 
             this->mRect.y -= speed;
@@ -15,16 +22,16 @@ void Player::movement(){
     }
     //std::cout<<this->mRect.x<<std::endl;
     if(app.right){
-        if((this->mRect.x+200>SCREEN_WIDTH)){
-            this->mRect.x = SCREEN_WIDTH-200;
+        if((this->mRect.x+100>SCREEN_WIDTH)){
+            this->mRect.x = SCREEN_WIDTH-100;
 
         }
         this->mRect.x +=steerStrength;
     }                               
     if(app.left){
-        if((this->mRect.x+60<0)){
-            this->mRect.x = -60;
-
+        auto emptySpacePaddingInSprite = (playerStartingRect.w / 5);
+        if((this->mRect.x < -emptySpacePaddingInSprite)){
+            this->mRect.x = -emptySpacePaddingInSprite;
         }
         this->mRect.x -=steerStrength;
     }

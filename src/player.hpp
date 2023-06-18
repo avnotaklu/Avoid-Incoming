@@ -4,35 +4,35 @@
 #include "entity.hpp"
 #include "input.h"
 #include "vector"
-class Player : public Entity
-{
+
+extern SDL_Rect playerStartingRect;
+extern std::string playerSprite;
+
+class Player : public Entity {
 public:
-    void handle(const std::vector<Entity> &vehicles);
-    Player()
-    {
-        speed = 15;
-        mRect = {450,450,256,256};
-    }
+  void handle(const std::vector<Entity> &vehicles);
+  Player() {
+    mRect = playerStartingRect;
+    this->mCollisionBox = {40, 10, 48, 110};
+  }
 
-    Player& operator=(Player && other) noexcept
-    {
-        speed = other.speed;
-        mRect = other.mRect;
-        return *this;
-    }
+  Player &operator=(Player &&other) noexcept {
+    speed = other.speed;
+    mRect = other.mRect;
+    return *this;
+  }
 
+  Player(Player &&other) noexcept {
+    speed = other.speed;
+    mRect = other.mRect;
+  }
 
-    Player(Player && other) noexcept
-    {
-        speed = other.speed;
-        mRect = other.mRect;
-    }
+  virtual ~Player() override{};
+  float speed = 10;
 
-    virtual ~Player() override{ };
-    float speed;
 private:
-    const float steerStrength =  16;
-    void movement();
-    void collision(const std::vector<Entity> &vehicles);
+  const float steerStrength = 11;
+  void movement();
+  void collision(const std::vector<Entity> &vehicles);
 };
-#endif //PLAYER_H
+#endif // PLAYER_H

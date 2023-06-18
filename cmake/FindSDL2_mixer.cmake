@@ -85,7 +85,8 @@ if(SDL2_MIXER_INCLUDE_DIR AND EXISTS "${SDL2_MIXER_INCLUDE_DIR}/SDL_mixer.h")
     unset(SDL2_MIXER_VERSION_PATCH)
 endif()
 
-set(SDL2_MIXER_LIBRARIES ${SDL2_MIXER_LIBRARY} /usr/local/lib/libSDL2_mixer.so)
+set(SDL2_MIXER_LIBRARIES ${SDL2_MIXER_LIBRARY} /lib/x86_64-linux-gnu/libSDL2_mixer-2.0.so)
+    # /usr/local/lib/libSDL2_mixer.so)
 set(SDL2_MIXER_INCLUDE_DIRS ${SDL2_MIXER_INCLUDE_DIR} /usr/local/include/SDL2)
 
 include(FindPackageHandleStandardArgs)

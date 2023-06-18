@@ -1,0 +1,42 @@
+[
+{
+  "directory": "/home/ssp/c++/projects/SDL2/cars/out/build",
+  "command": "/usr/bin/c++  -I/usr/local/include/SDL2  -o CMakeFiles/app.dir/main.cpp.o -c /home/ssp/c++/projects/SDL2/cars/src/main.cpp",
+  "file": "/home/ssp/c++/projects/SDL2/cars/src/main.cpp"
+},
+{
+  "directory": "/home/ssp/c++/projects/SDL2/cars/out/build",
+  "command": "/usr/bin/c++  -I/usr/local/include/SDL2  -o CMakeFiles/app.dir/draw_window.cpp.o -c /home/ssp/c++/projects/SDL2/cars/src/draw_window.cpp",
+  "file": "/home/ssp/c++/projects/SDL2/cars/src/draw_window.cpp"
+},
+{
+  "directory": "/home/ssp/c++/projects/SDL2/cars/out/build",
+  "command": "/usr/bin/c++  -I/usr/local/include/SDL2  -o CMakeFiles/app.dir/input.cpp.o -c /home/ssp/c++/projects/SDL2/cars/src/input.cpp",
+  "file": "/home/ssp/c++/projects/SDL2/cars/src/input.cpp"
+},
+{
+  "directory": "/home/ssp/c++/projects/SDL2/cars/out/build",
+  "command": "/usr/bin/c++  -I/usr/local/include/SDL2  -o CMakeFiles/app.dir/entity.cpp.o -c /home/ssp/c++/projects/SDL2/cars/src/entity.cpp",
+  "file": "/home/ssp/c++/projects/SDL2/cars/src/entity.cpp"
+},
+{
+  "directory": "/home/ssp/c++/projects/SDL2/cars/out/build",
+  "command": "/usr/bin/c++  -I/usr/local/include/SDL2  -o CMakeFiles/app.dir/traffic.cpp.o -c /home/ssp/c++/projects/SDL2/cars/src/traffic.cpp",
+  "file": "/home/ssp/c++/projects/SDL2/cars/src/traffic.cpp"
+},
+{
+  "directory": "/home/ssp/c++/projects/SDL2/cars/out/build",
+  "command": "/usr/bin/c++  -I/usr/local/include/SDL2  -o CMakeFiles/app.dir/util.cpp.o -c /home/ssp/c++/projects/SDL2/cars/src/util.cpp",
+  "file": "/home/ssp/c++/projects/SDL2/cars/src/util.cpp"
+},
+{
+  "directory": "/home/ssp/c++/projects/SDL2/cars/out/build",
+  "command": "/usr/bin/c++  -I/usr/local/include/SDL2  -o CMakeFiles/app.dir/HUD.cpp.o -c /home/ssp/c++/projects/SDL2/cars/src/HUD.cpp",
+  "file": "/home/ssp/c++/projects/SDL2/cars/src/HUD.cpp"
+},
+{
+  "directory": "/home/ssp/c++/projects/SDL2/cars/out/build",
+  "command": "/usr/bin/c++  -I/usr/local/include/SDL2  -o CMakeFiles/app.dir/player.cpp.o -c /home/ssp/c++/projects/SDL2/cars/src/player.cpp",
+  "file": "/home/ssp/c++/projects/SDL2/cars/src/player.cpp"
+}
+]

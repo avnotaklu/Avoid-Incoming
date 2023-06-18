@@ -10,4 +10,5 @@ find_package(SDL2_mixer REQUIRED)
 #find_package(SDL_ttf REQUIRED)
 add_executable(app main.cpp draw_window.cpp draw_window.hpp common.h input.h input.cpp structs.h entity.cpp traffic.cpp util.cpp HUD.cpp player.cpp)
 include_directories(${SDL2_INCLUDE_DIRS} ${SDL2_MIXER_INCLUDE_DIRS} ${SDL2IMAGE_INCLUDE_DIR} /usr/local/include/SDL2/)
-target_link_libraries(app ${SDL2_LIBRARIES} ${SDL2_MIXER_LIBRARIES} ${SDL2IMAGE_LIBRARY}  ${SDL2TTF_LIBRARY} /usr/local/lib/libSDL2_ttf.so)
+target_link_libraries(app ${SDL2_LIBRARIES} ${SDL2_MIXER_LIBRARIES} ${SDL2IMAGE_LIBRARY}  ${SDL2TTF_LIBRARY} /lib/x86_64-linux-gnu/libSDL2_ttf-2.0.so)
+
